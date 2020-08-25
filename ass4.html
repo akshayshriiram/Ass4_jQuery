@@ -15,14 +15,7 @@
     <header>
         <div class="container">
 
-            <!-- <nav class="navbar navbar-light " style="background-color: #e3f2fd;">
-                <a class="navbar-brand text-center" href="#">
-                    <ul>Menu Table</ul>
-                </a>
-            </nav>
-            <!-- <a class="navbar-brand text-center" href="#">
-                <ul>Menu Table</ul>
-            </a> --> -->
+                
                 <h1 class="bg-info p-3 text-white text-center" >Menu Table</h1>            
                 <p class="font-italic text-center text-white bg-dark">Select the menu</p>
             
@@ -33,6 +26,10 @@
                     <option value="">Select Menu</option>
                 </select>
                 <br>
+                
+
+                <h3 class="text-center">Details of Selected Dish:</h3>
+                
 
                 <table id="tabl" class="table tab table-striped">
                     <tr>
@@ -61,6 +58,25 @@
                     </tr>
 
                 </table>
+                <hr>
+                <h2 class="text-center">Total Bill</h2>
+                <table id="myTable" border="3" class="table">
+
+                    <thead class="thead-dark">
+
+                        <tr>
+                            
+                            
+                            <th>Dish Name</th>
+                            <th>Price</th>
+                            
+                            
+                        </tr>
+                    </thead>
+                </table>
+                <br>
+                
+                <h3 id="total" class="bg-success text-white-50 bg-dark col col-lg-3 h5">Total Price:</h3>
 
 
             </div>
@@ -73,6 +89,7 @@
 
 
     <script src="ass4.js" defer></script>
+    
 
 </body>
 
