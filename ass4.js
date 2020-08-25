@@ -2,58 +2,66 @@ let url = "https://davids-restaurant.herokuapp.com/menu_items.json"
 
 let menu_items = null;
 
-$("document").ready(function(){
-    $.get(url,function(data, status){
-        if (status == "success"){
+$("document").ready(function () {
+    $.get(url, function (data, status) {
+        if (status == "success") {
             menu_items = data.menu_items;
             for (const key in data.menu_items) {
                 let opt = document.createElement("option");
                 opt.textContent = data.menu_items[key].name;
-                opt.value = key; 
+                opt.value = key;
                 document.querySelector('#restaurant').appendChild(opt);
                 // console.log(opt.value);
             }
         }
-       
+        
     });
-    
-document.querySelector("#restaurant").addEventListener("change",showdetails);
+    alert('Sorry!  We only provide large meal!!!')
 
-function showdetails(e){
-    let index = e.target.value;
-    console.log(index);
+    document.querySelector("#restaurant").addEventListener("change", showdetails);
+    let l_total = 0
+    let items = []
     
-    if(menu_items != null){
-        let x = menu_items[index];
-        let s_price = menu_items[index].price_small;
-        console.log('small price:  '+s_price);
-        let l_price = menu_items[index].price_large;
-        console.log('large price:  '+l_price);
-        console.log(x);
-        let pricesmall;
-        
-        if(x.price_small != null){
-            pricesmall = x.price_small;
+
+
+    function showdetails(e) {
+        let index = e.target.value;
+        console.log('index:  ' + index);
+
+        if (menu_items != null) {
+            n = menu_items[index].name
+            console.log(n);
             
-        }
-        else{
-            pricesmall = "Not available";
-        }
-        let descrp = x.description;
-        if(descrp == ""){
-            descrp = "Description not available";
-        }
+            let x = menu_items[index];
+
+            let descrp = x.description;
+            if (descrp == "") {
+                descrp = "Description not available";
+            }
+            var largeprice = x.price_large;
+            l_total += largeprice
+            console.log('total large'+l_total);
+            var table = document.getElementById("myTable");
+ 
+            var row = table.insertRow(1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = n;
+            cell2.innerHTML = x.price_large;
         
+
+        $('#total').html('Total Price: Rs.'+l_total);
+
         document.querySelector("#menuname").textContent = x.name;
         document.querySelector("#id").textContent = x.id;
         document.querySelector("#sname").textContent = x.short_name;
         document.querySelector("#descp").textContent = descrp;
-        document.querySelector("#psmall").textContent = pricesmall;
+        document.querySelector("#psmall").textContent = x.price_small;
         document.querySelector("#plarge").textContent = x.price_large;
         document.getElementById("tabl").style.display = "block";
     }
 
-    
+
 }
 
 
